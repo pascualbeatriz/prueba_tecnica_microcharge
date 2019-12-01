@@ -1,0 +1,160 @@
+{
+  "data": {
+    "id": "views::juicer::collectmap",
+    "type": "juicer_collect_map_view",
+    "attributes": {
+      "user": {},
+      "reserved_vehicles": [],
+      "vehicles": [
+        {
+          "id": "DKTEM7MIG7TD3",
+          "type": "juicer_bikes",
+          "attributes": {
+            "status": "locked",
+            "plate_number": "494087",
+            "latitude": 40.419347,
+            "longitude": -3.70004,
+            "last_activity_at": "2019-11-08T11:31:32.000Z",
+            "last_trip_at": "2019-11-08T03:51:02.000Z",
+            "type_name": "scooter",
+            "battery_level": "low",
+            "battery_percentage": 27,
+            "meter_range": null,
+            "icon_usage_type": null,
+            "last_three": "087",
+            "already_collected": false,
+            "task_type": "ScooterChargeTask",
+            "juicer_earnings_amount": null,
+            "display_task": {
+              "id": "LJSUGV5OT5ERF",
+              "type": "juicer_tasks",
+              "attributes": {
+                "bike": null,
+                "task_type": "ScooterChargeTask",
+                "due_at": null,
+                "juicer_earnings_amount": {
+                  "currency_code": "EUR",
+                  "amount": 3,
+                  "amount_str": "3.0",
+                  "currency_symbol": "€",
+                  "display_string": "€3"
+                },
+                "reservation": null,
+                "reservation_time_seconds": 1800,
+                "info_window": {
+                  "title": "Charge XXX-087",
+                  "description": "Charge and drop off at a LimeHub by 06:00 PM"
+                },
+                "expected_due_time": "2019-11-08T17:00:00.000Z",
+                "juicer_earnings_currency": "EUR",
+                "juicer_earnings_amount_cents": 300
+              }
+            },
+            "juicer_earnings_currency": null,
+            "juicer_earnings_amount_cents": null
+          }
+        },
+        {
+          "id": "HYHWKLS5WQIKY",
+          "type": "juicer_bikes",
+          "attributes": {
+            "status": "locked",
+            "plate_number": "362376",
+            "latitude": 40.431572,
+            "longitude": -3.675339,
+            "last_activity_at": "2019-11-08T11:42:47.000Z",
+            "last_trip_at": "2019-11-08T03:19:55.000Z",
+            "type_name": "scooter",
+            "battery_level": "super_low",
+            "battery_percentage": 14,
+            "meter_range": null,
+            "icon_usage_type": null,
+            "last_three": "376",
+            "already_collected": false,
+            "task_type": "VehicleRetrievalTask",
+            "juicer_earnings_amount": null,
+            "display_task": {
+              "id": "TWQI6Y7DX2UYS",
+              "type": "juicer_tasks",
+              "attributes": {
+                "bike": null,
+                "task_type": "VehicleRetrievalTask",
+                "due_at": null,
+                "juicer_earnings_amount": {
+                  "currency_code": "EUR",
+                  "amount": 3,
+                  "amount_str": "3.0",
+                  "currency_symbol": "€",
+                  "display_string": "€3"
+                },
+                "reservation": null,
+                "reservation_time_seconds": 1800,
+                "info_window": {
+                  "title": "Charge XXX-376",
+                  "description": "Charge and drop off at a LimeHub by 06:00 PM"
+                },
+                "expected_due_time": "2019-11-08T17:00:00.000Z",
+                "juicer_earnings_currency": "EUR",
+                "juicer_earnings_amount_cents": 300
+              }
+            },
+            "juicer_earnings_currency": null,
+            "juicer_earnings_amount_cents": null
+          }
+        },
+        {
+          "id": "XC6XTTRSUWXDP",
+          "type": "juicer_bikes",
+          "attributes": {
+            "status": "locked",
+            "plate_number": "496486",
+            "latitude": 40.478278,
+            "longitude": -3.671259,
+            "last_activity_at": "2019-11-08T11:43:48.000Z",
+            "last_trip_at": "2019-11-08T02:12:50.000Z",
+            "type_name": "scooter",
+            "battery_level": "low",
+            "battery_percentage": 27,
+            "meter_range": null,
+            "icon_usage_type": null,
+            "last_three": "486",
+            "already_collected": false,
+            "task_type": "VehicleDeployTask",
+            "juicer_earnings_amount": null,
+            "display_task": {
+              "id": "JEYGECE7JXIWC",
+              "type": "juicer_tasks",
+              "attributes": {
+                "bike": null,
+                "task_type": "VehicleDeployTask",
+                "due_at": null,
+                "juicer_earnings_amount": {
+                  "currency_code": "EUR",
+                  "amount": 3,
+                  "amount_str": "3.0",
+                  "currency_symbol": "€",
+                  "display_string": "€3"
+                },
+                "reservation": null,
+                "reservation_time_seconds": 1800,
+                "info_window": {
+                  "title": "Charge XXX-486",
+                  "description": "Charge and drop off at a LimeHub by 06:00 PM"
+                },
+                "expected_due_time": "2019-11-08T17:00:00.000Z",
+                "juicer_earnings_currency": "EUR",
+                "juicer_earnings_amount_cents": 300
+              }
+            },
+            "juicer_earnings_currency": null,
+            "juicer_earnings_amount_cents": null
+          }
+        }
+      ],
+      "clusters": [],
+      "reservation_capacity": {},
+      "icons": []
+    }
+  },
+  "meta": {}
+}
