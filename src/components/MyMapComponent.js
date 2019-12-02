@@ -7,19 +7,16 @@ class myMapComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isOpen: false,
-      openInfoWindowMarkerId: '',
-      // position: '',
+      openVehicleId: '',
     };
     // this.handleToggleOpen = this.handleToggleOpen.bind(this);
   }
 
-  handleToggleOpen = id => {
+  handleToggleOpen(id) {
     this.setState({
-      isOpen: true,
-      InfoWindow: '',
+      openVehicleId: id,
     });
-  };
+  }
 
   handleToggleClose = () => {
     this.setState({
@@ -42,9 +39,11 @@ class myMapComponent extends React.Component {
             }}
             onClick={() => this.handleToggleOpen(birdScooter.id)}
           >
-            {this.state.isOpen && (
+            {this.state.openVehicleId === birdScooter.id && (
               <InfoWindow onCloseClick={() => this.handleToggleClose()}>
-                <span>details</span>
+                <div>
+                  <p>{}</p>
+                </div>
               </InfoWindow>
             )}
           </Marker>
