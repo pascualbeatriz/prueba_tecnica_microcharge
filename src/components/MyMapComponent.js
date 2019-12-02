@@ -1,61 +1,57 @@
 import React from 'react';
-import {compose, withProps} from 'recompose';
-import {
-  withScriptjs,
-  withGoogleMap,
-  GoogleMap,
-  Marker,
-} from 'react-google-maps';
+import {GoogleMap, Marker, InfoWindow} from 'react-google-maps';
+import * as birdScooters from '../clients/bird-get-scooters.json';
+import * as limeScooters from '../clients/lime-get-scooter.json';
 
-const MyMapComponent = compose(
-  withProps({
-    googleMapURL:
-      'https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places',
-    loadingElement: <div style={{height: `100%`}} />,
-    containerElement: <div style={{height: `400px`}} />,
-    mapElement: <div style={{height: `100%`}} />,
-  }),
-  withScriptjs,
-  withGoogleMap
-)(props => (
-  <GoogleMap defaultZoom={8} defaultCenter={{lat: -34.397, lng: 150.644}}>
-    {props.isMarkerShown && (
-      <Marker
-        position={{lat: -34.397, lng: 150.644}}
-        onClick={props.onMarkerClick}
-      />
-    )}
-  </GoogleMap>
-));
-
-class MyFancyComponent extends React.PureComponent {
-  state = {
-    isMarkerShown: false,
-  };
-
-  componentDidMount() {
-    this.delayedShowMarker();
+class myMapComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isOpen: false,
+      openInfoWindowMarkerId: '',
+      // position: '',
+    };
+    // this.handleToggleOpen = this.handleToggleOpen.bind(this);
   }
 
-  delayedShowMarker = () => {
-    setTimeout(() => {
-      this.setState({isMarkerShown: true});
-    }, 3000);
+  handleToggleOpen = id => {
+    this.setState({
+      isOpen: true,
+      InfoWindow: '',
+    });
   };
 
-  handleMarkerClick = () => {
-    this.setState({isMarkerShown: false});
-    this.delayedShowMarker();
+  handleToggleClose = () => {
+    this.setState({
+      isOpen: false,
+    });
   };
 
   render() {
     return (
-      <MyMapComponent
-        isMarkerShown={this.state.isMarkerShown}
-        onMarkerClick={this.handleMarkerClick}
-      />
+      <GoogleMap
+        defaultZoom={10}
+        defaultCenter={{lat: 40.416775, lng: -3.70379}}
+      >
+        {birdScooters.birds.map((birdScooter, index) => (
+          <Marker
+            key={birdScooter.id}
+            position={{
+              lat: birdScooter.location.latitude,
+              lng: birdScooter.location.longitude,
+            }}
+            onClick={() => this.handleToggleOpen(birdScooter.id)}
+          >
+            {this.state.isOpen && (
+              <InfoWindow onCloseClick={() => this.handleToggleClose()}>
+                <span>details</span>
+              </InfoWindow>
+            )}
+          </Marker>
+        ))}
+      </GoogleMap>
     );
   }
 }
 
-export default MyMapComponent;
+export default myMapComponent;
