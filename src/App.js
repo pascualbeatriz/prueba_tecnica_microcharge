@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import myMapComponent from './components/myMapComponent';
+import * as birdScooters from './clients/bird-get-scooters.json';
 import {
   withScriptjs,
   withGoogleMap,
@@ -15,13 +16,17 @@ const CLAVE_API = {
 
 export default function App() {
   return (
-    <div style={{width: '100vw', height: '100vh'}}>
-      <WrappedMap
-        googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${CLAVE_API.key}`}
-        loadingElement={<div style={{height: `100%`}} />}
-        containerElement={<div style={{height: `100%`}} />}
-        mapElement={<div style={{height: `100%`}} />}
-      />
-    </div>
+    <Fragment>
+      level of batery <input type="radio" className="batery-level" />
+      client <input type="radio" className="batery-level" />
+      <div style={{width: '100vw', height: '100vh'}}>
+        <WrappedMap
+          googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${CLAVE_API.key}`}
+          loadingElement={<div style={{height: `100%`}} />}
+          containerElement={<div style={{height: `100%`}} />}
+          mapElement={<div style={{height: `100%`}} />}
+        />
+      </div>
+    </Fragment>
   );
 }
