@@ -1,22 +1,16 @@
 import React, {Fragment} from 'react';
-import Filter from '../Filter';
 import {GoogleMap, Marker, InfoWindow} from 'react-google-maps';
 import {MarkerClusterer} from 'react-google-maps/lib/components/addons/MarkerClusterer';
+import Filter from '../Filter';
 import * as birdScooters from '../clients/bird-get-scooters.json';
 import * as limeScooters from '../clients/lime-get-scooter.json';
 
-class myMapComponent extends React.Component {
+class MyMapComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       openVehicleId: '',
-      gap: '',
-      gapClient: '',
-      batteryLevel: '',
-      client: '',
     };
-    this.getInputValue = this.getInputValue.bind(this);
-    this.getBatteryLevel = this.getBatteryLevel.bind(this);
   }
 
   handleToggleOpen(id) {
@@ -37,33 +31,21 @@ class myMapComponent extends React.Component {
     console.log(clickedMarkers);
   }
 
-  getInputValue(event) {
-    const gap = event.currentTarget.checked;
-    const gapClient = event.currentTarget.checked;
-    this.setState({
-      gap: gap,
-      gapClient: gapClient,
-    });
-    console.log();
-  }
-
-  getBatteryLevel(event) {
-    const newLBatteryLevel = event.currentTarget;
-    this.setState({
-      location: newLBatteryLevel,
-    });
-  }
-
-  getClient(event) {
-    const newClient = event.currentTarget;
-    this.setState({
-      location: newClient,
-    });
-  }
-
   render() {
+    const {getbatteryFilter, batteryFilter} = this.props;
+
     return (
       <Fragment>
+        {/*         
+          {birdScooters.birds.filter((birdBattery, index) => {
+            if (batteryFilter === 100) {
+              return true;
+            }else {
+              return batteryFilter === birdBattery.batteryFilter
+            }
+
+          }) */}
+
         <GoogleMap
           defaultZoom={10}
           defaultCenter={{lat: 40.416775, lng: -3.70379}}
@@ -74,9 +56,6 @@ class myMapComponent extends React.Component {
             enableRetinaIcons
             gridSize={50}
           >
-            {/* <Filter>
-
-            </Filter> */}
             {birdScooters.birds.map((birdScooter, index) => (
               <Marker
                 key={birdScooter.id}
@@ -84,6 +63,7 @@ class myMapComponent extends React.Component {
                   lat: birdScooter.location.latitude,
                   lng: birdScooter.location.longitude,
                 }}
+                batteryFilter={birdScooter.battery_level}
                 onClick={() => this.handleToggleOpen(birdScooter.id)}
               >
                 {this.state.openVehicleId === birdScooter.id && (
@@ -111,4 +91,7 @@ class myMapComponent extends React.Component {
   }
 }
 
-export default myMapComponent;
+export default MyMapComponent;
+// eso es, ahí sí que te lo pinta
+// vale pero desde App hasta MyMapComponent puedes pasarle lo que quieras por props
+// o sea, puede estar el estado y los handlers en app, y pasar solo por props a MyMapComponent el valor del filtro
