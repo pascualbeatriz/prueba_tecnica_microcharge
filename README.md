@@ -1,26 +1,36 @@
-# Fullstack Test
-## The Scenario
-We work with many clients which provide us, via API, the information of the e-vehicles we operate with. For this exercise, we are going to use only two clients with their corresponding APIs:
-- Lime: https://gist.githubusercontent.com/mgonzalezbaile/4aa96056838edaa26588008b714b2973/raw/c6ee57af1d6615b85b947c19f98f7d81a793675e/limes.json
-- Bird: https://gist.githubusercontent.com/mgonzalezbaile/babe1b43f0d70d9af43537fb6ce60ff0/raw/873352b026edef06d7dd92e295d64eaf52cb476b/birds.json
+Esta prueba está hecha con React (Una biblioteca de JavaScript)
+Pasos a seguir de este ejercicio:
 
-## The Challenge (Back-End)
-We want you to build a small app that:
+Fase 1: Creación del proyecto
 
-1. Fetches the e-vehicles information from those clients.
-2. Provides an endpoint to query e-vehicles information.
-3. The endpoint should allow to filter by `battery-level` range and `client`.
+- He instalado React con: create-react-app- He instalado React Google Maps (npm install --save react-google-maps), es una librería para poder manejar mapas de google maps en React- Una vez intaslado esto, empecé a limpiar archivos y a trabajar en un repositorio local y en Github.
 
-## The Challenge (Front-End)
-We want you to build a small app that:
+Fase 2: Pintado del mapa
 
-1. Shows in a map a marker for each e-vehicle based on its location.
-2. When we tap/click on a marker, the details of the e-vehicle are shown.
-3. Markers are clustered in groups of 50.
-4. We can filter the e-vehicles shown by `battery-level` range and `client`.
+- Siguiendo la documentación de react-google-maps (https://tomchentw.github.io/react-google-maps/#introduction) he creado un componente MyMapComponent en el que he importado google map para poder renderizar el mapa y que lo pinte en pantalla.Tiene como keys un defaultZoom, para que pinte el mapa más lejos o más cerca en primera instancia al ser cargado y un defaultCenter, para que ubique el mapa en un lugar en concreto en este caso (Madrid). <GoogleMap defaultZoom={10} defaultCenter={{lat: 40.416775, lng: -3.70379}} >
 
-## NOTES
-- You can solve either one or both challenges as well as you can solve as many points as you want from each challenge.
-- Don't include comments in your code, use the `README.md` to explain every decision and assumptions you have made.
-- Please, include in the `README.md` file the instructions to run the app/s.
-- You can send the solution as a .zip file to tech@microcharge.tech
+- He creado un componente App, donde he importado withScriptjs y withGoogleMap (que carga diferentes librerías para que el mapa se cargue y funcione de forma correcta).- Primero he guardado en una constate "WrappedMap", el mapa que he creado en el componente MyMapComponent.js, que después he importado en App.js- Para que el mapa se cargue y funcione correctamente hay que registrarse en Google Map y conseguir una API key que guardo en otra constante como un objeto.
+
+const WrappedMap = withScriptjs(withGoogleMap(MyMapComponent));const CLAVE_API = { key: 'AIzaSyBH9ARmSyvRWNx79up1lAvndPz0xYhET5c', language: 'es',};
+
+- Una vez realizado esto, he creado un componente WrappedMap donde he añadido por props la URL de Google Maps que nos facilita la documentación + la clave Api que necesita. con otras propiedades.
+
+<WrappedMap googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${CLAVE_API.key}`} loadingElement={<div style={{height: `100%`}} />} containerElement={<div style={{height: `100%`}} />} mapElement={<div style={{height: `80%`}} />} batteryFilter={batteryFilter} clientFilter={clientFilter} />
+
+Fase 3: Añadir Markers y localizarlos en el mapa
+
+- En MyMapComponent he importado las "funciones" Marker e infoWindow, para poder añadir las localizaciones en el mapa y una vez que clickemos en una, aaparezca un pop up donde sale información detallada de cada vehículo.
+
+- Aquí también se han importado los 2 archivos .json facilitados por el cliente (lime y bird) para poder extraer los datos y añadirlos a su marker correspondiente.
+
+Para ello se ha realizado un map y se han ido insertando los datos en cada marker a través de props. A continuación se ha añadido una "función escuchadora" donde se indentifica cada marker guardándolo en el estado e indicándole que si ese marker está activo se despliegue una ventana con la infomación que tenemos guardada. Si hacemos click en la X de cierre la ventana del marker se cierra.
+
+Fase 4: MarkerClusterer, agrupar Markers
+
+- Este componente engloba a los diferentes Markers , funciona iterando los marcadores y cada marcador se suma a un grupo más cercano si está dentro de un mínimo de pixeles. Pasamos propiedades por props y una función que recopila todos los markers y los agrupa.
+
+Fase 5: Filtrado
+
+- Aquí he creado dos Select uno para filtrar por Nivel de bateria y otro por tipo de clienteAl cargar el mapa lo que aparece son todos los markers y dependiendo de la opción que elija el usuario aparecen filtrados por nivel de bateria o tipo de cliente.
+
+- Desde App paso por props a Filter, ClientFilter y WrappedMap La info que guardo en el estado al filtrar los datos y la función que me identifica el elemento seleccionado (el filtro elegido por el usuario)- En MyMapComponent recojo la info del estado filtro por el nivel de bateria, dependiendo del cliente que se elija me recoge y me pinta una información u otra
