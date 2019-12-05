@@ -1,6 +1,3 @@
-.batery-level {
-  /* position: relative;
-  top: 0;
-  left: 30; */
-  background-color: blue;
+.input__container {
+  display: flex;
 }

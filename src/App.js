@@ -2,6 +2,7 @@ import React, {Fragment} from 'react';
 import MyMapComponent from './components/MyMapComponent';
 // import * as birdScooters from './clients/bird-get-scooters.json';
 import Filter from './Filter';
+import ClientFilter from './ClientFilter';
 import './App.css';
 import {withScriptjs, withGoogleMap} from 'react-google-maps';
 
@@ -15,9 +16,11 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      batteryFilter: '',
+      batteryFilter: 100,
+      clientFilter: '',
     };
     this.getbatteryFilter = this.getbatteryFilter.bind(this);
+    this.getClientFilter = this.getClientFilter.bind(this);
   }
 
   getbatteryFilter(event) {
@@ -27,16 +30,25 @@ export default class App extends React.Component {
     });
   }
 
+  getClientFilter(event) {
+    const newClientFilter = event.currentTarget.value;
+    this.setState({
+      clientFilter: newClientFilter,
+    });
+  }
+
   render() {
-    const {batteryFilter} = this.state;
+    const {batteryFilter, clientFilter} = this.state;
     console.log(batteryFilter);
     return (
       <Fragment>
-        {/* level of batery <input type="radio" className="batery-level" />
-        client <input type="radio" className="batery-level" /> */}
         <Filter
           getbatteryFilter={this.getbatteryFilter}
           batteryFilter={batteryFilter}
+        />
+        <ClientFilter
+          getClientFilter={this.getClientFilter}
+          // clientFilter
         />
 
         <div style={{width: '100vw', height: '100vh'}}>
@@ -46,6 +58,7 @@ export default class App extends React.Component {
             containerElement={<div style={{height: `100%`}} />}
             mapElement={<div style={{height: `50%`}} />}
             batteryFilter={batteryFilter}
+            clientFilter={clientFilter}
           />
         </div>
       </Fragment>
