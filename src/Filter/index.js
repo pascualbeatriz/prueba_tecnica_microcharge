@@ -5,7 +5,9 @@ const Filter = props => {
 
   return (
     <div className="input__container">
-      Nivel de batería
+      <label htmlFor="battery-level" className="text">
+        Nivel de batería
+      </label>
       <select
         id="battery-level"
         name="size"

@@ -51,12 +51,12 @@ export default class App extends React.Component {
           // clientFilter
         />
 
-        <div style={{width: '100vw', height: '100vh'}}>
+        <div className="map_container" style={{width: '80vw', height: '80vh'}}>
           <WrappedMap
             googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${CLAVE_API.key}`}
             loadingElement={<div style={{height: `100%`}} />}
             containerElement={<div style={{height: `100%`}} />}
-            mapElement={<div style={{height: `50%`}} />}
+            mapElement={<div style={{height: `80%`}} />}
             batteryFilter={batteryFilter}
             clientFilter={clientFilter}
           />
