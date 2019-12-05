@@ -1,4 +1,19 @@
 Esta prueba está hecha con React (Una biblioteca de JavaScript)
+
+Para poder usar REACT tienes que seguir estos pasos:
+Instalación
+Para comenzar a utilizar React debemos instalar algunos paquetes.
+Lo primero que tenemos que instalar es Node.js ya que vamos a utilizar npm para la instalación de los paquetes de ReactJs.
+Una vez descargado e instalado, vamos a proceder con los siguientes comandos:
+Verificar si esta bien instalado Node y que versión:
+node -v
+
+Y por último, iniciar la aplicación:
+npm start
+Si todo esta bien, la aplicación estará corriendo en el puerto 3000.
+
+---
+
 Pasos a seguir de este ejercicio:
 
 Fase 1: Creación del proyecto
