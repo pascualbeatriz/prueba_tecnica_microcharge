@@ -32,20 +32,10 @@ class MyMapComponent extends React.Component {
   }
 
   render() {
-    const {getbatteryFilter, batteryFilter} = this.props;
+    const {batteryFilter} = this.props;
 
     return (
       <Fragment>
-        {/*         
-          {birdScooters.birds.filter((birdBattery, index) => {
-            if (batteryFilter === 100) {
-              return true;
-            }else {
-              return batteryFilter === birdBattery.batteryFilter
-            }
-
-          }) */}
-
         <GoogleMap
           defaultZoom={10}
           defaultCenter={{lat: 40.416775, lng: -3.70379}}
@@ -56,34 +46,36 @@ class MyMapComponent extends React.Component {
             enableRetinaIcons
             gridSize={50}
           >
-            {birdScooters.birds.map((birdScooter, index) => (
-              <Marker
-                key={birdScooter.id}
-                position={{
-                  lat: birdScooter.location.latitude,
-                  lng: birdScooter.location.longitude,
-                }}
-                batteryFilter={birdScooter.battery_level}
-                onClick={() => this.handleToggleOpen(birdScooter.id)}
-              >
-                {this.state.openVehicleId === birdScooter.id && (
-                  <InfoWindow onCloseClick={() => this.handleToggleClose()}>
-                    <div>
-                      <p>{`Código vehículo: ${birdScooter.code}`}</p>
-                      <p>{`Marca: ${birdScooter.brand_name}`}</p>
-                      <p>{`Bluetooh: ${
-                        birdScooter.bluetooth === true ? 'Sí' : 'No'
-                      }`}</p>
-                      <p>{`Disponible: ${
-                        birdScooter.lifecycle.condition === 'available'
-                          ? 'Sí'
-                          : 'No'
-                      }`}</p>
-                    </div>
-                  </InfoWindow>
-                )}
-              </Marker>
-            ))}
+            {birdScooters.birds
+              .filter(birdScooter => birdScooter.battery_level <= batteryFilter)
+              .map((birdScooter, index) => (
+                <Marker
+                  key={birdScooter.id}
+                  position={{
+                    lat: birdScooter.location.latitude,
+                    lng: birdScooter.location.longitude,
+                  }}
+                  batteryFilter={birdScooter.battery_level}
+                  onClick={() => this.handleToggleOpen(birdScooter.id)}
+                >
+                  {this.state.openVehicleId === birdScooter.id && (
+                    <InfoWindow onCloseClick={() => this.handleToggleClose()}>
+                      <div>
+                        <p>{`Código vehículo: ${birdScooter.code}`}</p>
+                        <p>{`Marca: ${birdScooter.brand_name}`}</p>
+                        <p>{`Bluetooh: ${
+                          birdScooter.bluetooth === true ? 'Sí' : 'No'
+                        }`}</p>
+                        <p>{`Disponible: ${
+                          birdScooter.lifecycle.condition === 'available'
+                            ? 'Sí'
+                            : 'No'
+                        }`}</p>
+                      </div>
+                    </InfoWindow>
+                  )}
+                </Marker>
+              ))}
           </MarkerClusterer>
         </GoogleMap>
       </Fragment>

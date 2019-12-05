@@ -3,12 +3,7 @@ import MyMapComponent from './components/MyMapComponent';
 // import * as birdScooters from './clients/bird-get-scooters.json';
 import Filter from './Filter';
 import './App.css';
-import {
-  withScriptjs,
-  withGoogleMap,
-  // GoogleMap,
-  // Marker,
-} from 'react-google-maps';
+import {withScriptjs, withGoogleMap} from 'react-google-maps';
 
 const WrappedMap = withScriptjs(withGoogleMap(MyMapComponent));
 const CLAVE_API = {
@@ -50,6 +45,7 @@ export default class App extends React.Component {
             loadingElement={<div style={{height: `100%`}} />}
             containerElement={<div style={{height: `100%`}} />}
             mapElement={<div style={{height: `50%`}} />}
+            batteryFilter={batteryFilter}
           />
         </div>
       </Fragment>
