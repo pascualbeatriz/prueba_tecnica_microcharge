@@ -1,7 +1,7 @@
 import React, {Fragment} from 'react';
 import MyMapComponent from './components/MyMapComponent';
 // import * as birdScooters from './clients/bird-get-scooters.json';
-import Filter from './Filter';
+import BatteryFilter from './BatteryFilter';
 import ClientFilter from './ClientFilter';
 import './App.css';
 import {withScriptjs, withGoogleMap} from 'react-google-maps';
@@ -42,7 +42,7 @@ export default class App extends React.Component {
     console.log(batteryFilter);
     return (
       <Fragment>
-        <Filter
+        <BatteryFilter
           getbatteryFilter={this.getbatteryFilter}
           batteryFilter={batteryFilter}
         />

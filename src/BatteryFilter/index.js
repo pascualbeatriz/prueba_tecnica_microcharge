@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Filter = props => {
+const BatteryFilter = props => {
   const {getbatteryFilter, batteryFilter} = props;
 
   return (
@@ -23,4 +23,4 @@ const Filter = props => {
   );
 };
 
-export default Filter;
+export default BatteryFilter;
